@@ -1,0 +1,33 @@
+import random
+
+def calculate_speed_with_wind(speed, wind_speed):
+    wind_speed_difference = wind_speed - 10
+    speed_reduction_percentage = wind_speed_difference * 0.5
+    adjusted_speed = speed - (speed * speed_reduction_percentage / 100)
+    return adjusted_speed
+
+def measure_speed_of_athletes(marathon_distance, wind_speed):
+    total_meters = marathon_distance * 1000
+    total_100m_intervals = total_meters // 100
+
+    # Generate random speed averages for each 100m
+    speed_averages = [random.uniform(10, 20) for _ in range(total_100m_intervals)]
+
+    # Measure speed with wind and adjust for wind speed
+    adjusted_speeds = []
+    for speed in speed_averages:
+        adjusted_speed = calculate_speed_with_wind(speed, wind_speed)
+        adjusted_speeds.append(adjusted_speed)
+
+    return adjusted_speeds
+
+marathon_distance = 30
+wind_speed = random.uniform(10, 19)
+
+adjusted_speeds = measure_speed_of_athletes(marathon_distance, wind_speed)
+
+# Print the adjusted speeds for each 100m interval
+for i, speed in enumerate(adjusted_speeds):
+    distance = (i + 1) * 100
+    print(f"Distance: {distance}m\tSpeed: {speed} km/h")
+
